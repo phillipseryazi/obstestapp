@@ -14,6 +14,9 @@ import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -240,6 +243,14 @@ fun CircularImageCard(
     modifier: Modifier = Modifier,
     athlete: Athlete
 ) {
+    val placeholder = painterResource(R.drawable.img_placeholder)
+    val gradientBrush by remember {
+        mutableStateOf(
+            Brush.linearGradient(
+                listOf(Color.Blue.copy(0.5f), Color.Blue.copy(0.5f))
+            )
+        )
+    }
     Card(
         modifier = modifier
     ) {
@@ -255,7 +266,7 @@ fun CircularImageCard(
             )
             AsyncImage(
                 model = "$BASE_URL/athletes/${athlete.photoId}/photo",
-                placeholder = painterResource(com.example.obstestapp.R.drawable.img_placeholder),
+                placeholder = placeholder,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -264,9 +275,7 @@ fun CircularImageCard(
                     .border(
                         width = 1.dp,
                         shape = CircleShape,
-                        brush = Brush.linearGradient(
-                            listOf(MaterialTheme.colors.primary, MaterialTheme.colors.primary)
-                        )
+                        brush = gradientBrush
                     )
             )
             Spacer(
