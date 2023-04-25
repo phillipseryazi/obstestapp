@@ -23,3 +23,5 @@ This is an app that shows a list of athletes grouped by the year of Olympics gam
 ### How To Run Tests
 - In your Android Studio terminal run `./gradlew connectedAndroidTest` for instrumentation tests
 - In your Android Studio terminal run `./gradlew test` for unit tests
+- Alternatively, you can right click on the source set `com.example.obstestapp(androidTest)` and select `Run 'Tests' in`, similarly
+you can do the same with the source set `com.example.obstestapp(test)`
