@@ -3,6 +3,7 @@ package com.example.obstestapp.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.obsapp.ui.models.state.HomeScreenState
+import com.example.obstestapp.domain.Games
 import com.example.obstestapp.domain.IMainRepository
 import com.example.obstestapp.utils.IDispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,14 +41,27 @@ class HomeViewModel @Inject constructor(
                 }
                 .collect { result ->
                     result.onSuccess { gamesList ->
+                        val sortedGames = sortGamesByYearAndAthleteScore(gamesList)
                         homeScreenState.update { state ->
                             state.copy(
-                                games = gamesList,
+                                games = sortedGames,
                                 isLoading = false
                             )
                         }
                     }
                 }
         }
+    }
+
+    private fun sortGamesByYearAndAthleteScore(games: List<Games>): List<Games> {
+        return games.sortedByDescending { it.year }
+            .map { game ->
+                val athleteList = game.athletes.filter { athlete ->
+                    athlete.results.any { it.year == game.year }
+                }.sortedByDescending { athlete ->
+                    athlete.results.find { it.year == game.year }?.score
+                }
+                game.copy(athletes = athleteList)
+            }
     }
 }

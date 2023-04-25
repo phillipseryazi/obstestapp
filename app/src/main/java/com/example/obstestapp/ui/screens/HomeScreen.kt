@@ -30,7 +30,6 @@ import coil.compose.AsyncImage
 import com.example.obsapp.ui.models.state.HomeScreenState
 import com.example.obstestapp.R
 import com.example.obstestapp.domain.Athlete
-import com.example.obstestapp.domain.Games
 import com.example.obstestapp.ui.elements.ErrorCard
 import com.example.obstestapp.ui.elements.OBSNavbar
 import com.example.obstestapp.ui.elements.OBSText
@@ -44,8 +43,6 @@ fun HomeScreen(
     state: HomeScreenState,
     navigateToDetails: (athleteId: Int) -> Unit = {}
 ) {
-    val sortedGamesList = state.games.sortedByDescending { it.year }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -68,7 +65,6 @@ fun HomeScreen(
                     .fillMaxSize()
                     .testTag(Tags.HOME_SCREEN_LANDSCAPE_TAG),
                 state = state,
-                sortedGamesList = sortedGamesList,
                 navigateToDetails = navigateToDetails
             )
         } else {
@@ -77,7 +73,6 @@ fun HomeScreen(
                     .fillMaxSize()
                     .testTag(Tags.HOME_SCREEN_PORTRAIT_TAG),
                 state = state,
-                sortedGamesList = sortedGamesList,
                 navigateToDetails = navigateToDetails
             )
         }
@@ -88,7 +83,6 @@ fun HomeScreen(
 fun HomeScreenPortraitLayout(
     modifier: Modifier = Modifier,
     state: HomeScreenState,
-    sortedGamesList: List<Games>,
     navigateToDetails: (athleteId: Int) -> Unit
 ) {
     Box(modifier = modifier) {
@@ -113,7 +107,7 @@ fun HomeScreenPortraitLayout(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    sortedGamesList.forEach { games ->
+                    state.games.forEach { games ->
                         item {
                             HomeScreenHeader(
                                 modifier = Modifier
@@ -125,11 +119,6 @@ fun HomeScreenPortraitLayout(
                             )
                         }
                         item {
-                            val athleteList = games.athletes.filter { athlete ->
-                                athlete.results.any { it.year == games.year }
-                            }.sortedByDescending { athlete ->
-                                athlete.results.find { it.year == games.year }?.score
-                            }
                             LazyRow(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -138,7 +127,7 @@ fun HomeScreenPortraitLayout(
                                     ),
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                items(items = athleteList) { athlete ->
+                                items(items = games.athletes) { athlete ->
                                     CircularImageCard(
                                         modifier = Modifier
                                             .size(width = 150.dp, height = 200.dp)
@@ -169,7 +158,6 @@ fun HomeScreenPortraitLayout(
 fun HomeScreenLandscapeLayout(
     modifier: Modifier = Modifier,
     state: HomeScreenState,
-    sortedGamesList: List<Games>,
     navigateToDetails: (athleteId: Int) -> Unit
 ) {
     Box(modifier = modifier) {
@@ -193,7 +181,7 @@ fun HomeScreenLandscapeLayout(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    sortedGamesList.forEach { games ->
+                    state.games.forEach { games ->
                         item {
                             HomeScreenHeader(
                                 modifier = Modifier
