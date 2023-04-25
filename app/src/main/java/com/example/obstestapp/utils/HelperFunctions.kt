@@ -39,3 +39,4 @@ fun sortGamesByYearAndAthleteScore(games: List<Games>): List<Games> {
             game.copy(athletes = athleteList)
         }
 }
+
