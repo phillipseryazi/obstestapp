@@ -1,5 +1,6 @@
 package com.example.obstestapp.utils
 
+import com.example.obstestapp.domain.Games
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
@@ -25,4 +26,16 @@ suspend fun <T : Any> executeApiCall(
     } catch (exc: NullPointerException) {
         Result.failure(exc)
     }
+}
+
+fun sortGamesByYearAndAthleteScore(games: List<Games>): List<Games> {
+    return games.sortedByDescending { it.year }
+        .map { game ->
+            val athleteList = game.athletes.filter { athlete ->
+                athlete.results.any { it.year == game.year }
+            }.sortedByDescending { athlete ->
+                athlete.results.find { it.year == game.year }?.score
+            }
+            game.copy(athletes = athleteList)
+        }
 }

@@ -6,6 +6,7 @@ import com.example.obsapp.ui.models.state.HomeScreenState
 import com.example.obstestapp.domain.Games
 import com.example.obstestapp.domain.IMainRepository
 import com.example.obstestapp.utils.IDispatcherProvider
+import com.example.obstestapp.utils.sortGamesByYearAndAthleteScore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
