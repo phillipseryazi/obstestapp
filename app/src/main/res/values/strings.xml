@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">OBSTestApp</string>
+    <string name="olympics_atheletes">Olympic Atheletes</string>
+    <string name="text_name">Name</string>
+    <string name="text_dob">DOB</string>
+    <string name="text_weight">Weight</string>
+    <string name="text_height">Height</string>
+    <string name="text_medals">Medals</string>
+    <string name="text_bio">Bio</string>
+    <string name="text_athlete">Athlete</string>
+    <string name="text_details">Details</string>
+</resources>
