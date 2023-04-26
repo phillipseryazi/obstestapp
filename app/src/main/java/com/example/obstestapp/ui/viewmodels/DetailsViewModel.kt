@@ -2,8 +2,8 @@ package com.example.obstestapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.obsapp.ui.models.events.DetailsEvent
-import com.example.obsapp.ui.models.state.DetailsScreenState
+import com.example.obstestapp.ui.models.events.DetailsEvent
+import com.example.obstestapp.ui.models.state.DetailsScreenState
 import com.example.obstestapp.domain.IMainRepository
 import com.example.obstestapp.utils.IDispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -39,7 +39,7 @@ class DetailsViewModel @Inject constructor(
                         state.copy(
                             isLoading = false,
                             showErrorCard = true,
-                            errorMessage = exc.message!!
+                            errorMessage = exc.message ?: ""
                         )
                     }
                 }

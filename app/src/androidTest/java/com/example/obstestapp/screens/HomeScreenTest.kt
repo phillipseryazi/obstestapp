@@ -4,7 +4,7 @@ package com.example.obstestapp.screens
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.obsapp.ui.models.state.HomeScreenState
+import com.example.obstestapp.ui.models.state.HomeScreenState
 import com.example.obstestapp.R
 import com.example.obstestapp.domain.Games
 import com.example.obstestapp.getListOfAthletes

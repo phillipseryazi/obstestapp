@@ -24,8 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.obsapp.ui.models.events.DetailsEvent
-import com.example.obsapp.ui.models.state.DetailsScreenState
+import com.example.obstestapp.ui.models.events.DetailsEvent
+import com.example.obstestapp.ui.models.state.DetailsScreenState
 import com.example.obstestapp.R
 import com.example.obstestapp.ui.elements.*
 import com.example.obstestapp.ui.theme.OBSTestAppTheme

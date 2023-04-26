@@ -13,10 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,12 +27,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.obsapp.ui.models.state.HomeScreenState
 import com.example.obstestapp.R
 import com.example.obstestapp.domain.Athlete
 import com.example.obstestapp.ui.elements.ErrorCard
 import com.example.obstestapp.ui.elements.OBSNavbar
 import com.example.obstestapp.ui.elements.OBSText
+import com.example.obstestapp.ui.models.events.HomeEvent
+import com.example.obstestapp.ui.models.state.HomeScreenState
 import com.example.obstestapp.ui.theme.OBSTestAppTheme
 import com.example.obstestapp.utils.BASE_URL
 import com.example.obstestapp.utils.Tags
@@ -44,8 +42,12 @@ import com.example.obstestapp.utils.Tags
 fun HomeScreen(
     isLandScape: Boolean,
     state: HomeScreenState,
+    handleEvent: (event: HomeEvent) -> Unit = {},
     navigateToDetails: (athleteId: Int) -> Unit = {}
 ) {
+    LaunchedEffect(key1 = null, block = {
+        handleEvent(HomeEvent.GetAllGames)
+    })
     Column(
         modifier = Modifier
             .fillMaxSize()

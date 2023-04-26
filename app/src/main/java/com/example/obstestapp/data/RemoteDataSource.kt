@@ -1,6 +1,5 @@
 package com.example.obstestapp.data
 
-import com.example.obstestapp.data.*
 import com.example.obstestapp.utils.executeApiCall
 import javax.inject.Inject
 

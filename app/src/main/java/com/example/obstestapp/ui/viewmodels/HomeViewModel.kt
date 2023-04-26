@@ -2,8 +2,9 @@ package com.example.obstestapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.obsapp.ui.models.state.HomeScreenState
+import com.example.obstestapp.ui.models.state.HomeScreenState
 import com.example.obstestapp.domain.IMainRepository
+import com.example.obstestapp.ui.models.events.HomeEvent
 import com.example.obstestapp.utils.IDispatcherProvider
 import com.example.obstestapp.utils.sortGamesByYearAndAthleteScore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +23,13 @@ class HomeViewModel @Inject constructor(
     var homeScreenState = MutableStateFlow(HomeScreenState())
         private set
 
-    init {
-        getAllGames()
+
+    fun handleEvent(event: HomeEvent) {
+        when (event) {
+            is HomeEvent.GetAllGames -> {
+                getAllGames()
+            }
+        }
     }
 
     private fun getAllGames() {
@@ -35,7 +41,7 @@ class HomeViewModel @Inject constructor(
                         state.copy(
                             isLoading = false,
                             showErrorCard = true,
-                            errorMessage = exc.message!!
+                            errorMessage = exc.message ?: ""
                         )
                     }
                 }

@@ -4,7 +4,7 @@ import com.example.obstestapp.MainDispatcherRule
 import com.example.obstestapp.TestDispatcherProvider
 import com.example.obstestapp.fakes.FakeMainRepository
 import com.example.obstestapp.fakes.FakeRemoteDataSource
-import com.example.obsapp.ui.models.events.DetailsEvent
+import com.example.obstestapp.ui.models.events.DetailsEvent
 import com.example.obstestapp.data.IRemoteDataSource
 import com.example.obstestapp.domain.Athlete
 import com.example.obstestapp.domain.IMainRepository

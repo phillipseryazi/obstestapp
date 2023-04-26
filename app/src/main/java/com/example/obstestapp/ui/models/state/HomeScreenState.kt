@@ -1,4 +1,4 @@
-package com.example.obsapp.ui.models.state
+package com.example.obstestapp.ui.models.state
 
 import com.example.obstestapp.domain.Games
 

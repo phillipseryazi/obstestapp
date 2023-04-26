@@ -3,7 +3,7 @@ package com.example.obstestapp.screens
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import com.example.obsapp.ui.models.state.DetailsScreenState
+import com.example.obstestapp.ui.models.state.DetailsScreenState
 import com.example.obstestapp.getListOfAthletes
 import com.example.obstestapp.ui.screens.DetailsScreen
 import com.example.obstestapp.utils.Tags

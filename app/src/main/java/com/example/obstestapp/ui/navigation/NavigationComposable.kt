@@ -24,6 +24,7 @@ fun NavigationComposable(isLandScape: Boolean, navController: NavHostController)
                 HomeScreen(
                     isLandScape = isLandScape,
                     state = viewModel.homeScreenState.collectAsStateWithLifecycle().value,
+                    handleEvent = viewModel::handleEvent,
                     navigateToDetails = { athleteId ->
                         navController.navigate("${Destination.DetailsScreen.route}/$athleteId")
                     }
