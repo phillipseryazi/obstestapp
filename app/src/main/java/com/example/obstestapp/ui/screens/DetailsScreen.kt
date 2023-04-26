@@ -24,14 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.obstestapp.ui.models.events.DetailsEvent
-import com.example.obstestapp.ui.models.state.DetailsScreenState
 import com.example.obstestapp.R
 import com.example.obstestapp.ui.elements.*
+import com.example.obstestapp.ui.models.events.DetailsEvent
+import com.example.obstestapp.ui.models.state.DetailsScreenState
 import com.example.obstestapp.ui.theme.OBSTestAppTheme
 import com.example.obstestapp.utils.BASE_URL
 import com.example.obstestapp.utils.Tags
-import com.mukesh.MarkDown
+import dev.jeziellago.compose.markdowntext.MarkdownText
 
 
 @Composable
@@ -199,12 +199,11 @@ fun DetailsScreenPortraitLayout(
                             .height(8.dp)
                     )
                     state.athlete?.let {
-                        MarkDown(
+                        MarkdownText(
                             modifier = Modifier
                                 .padding(start = 16.dp, end = 16.dp)
                                 .testTag(Tags.DETAILS_SCREEN_MARKDOWN_TAG),
-                            text = it.bio,
-                            shouldOpenUrlInBrowser = true
+                            markdown = it.bio
                         )
                     }
                     Spacer(
@@ -352,12 +351,11 @@ fun DetailsScreenLandscapeLayout(
                                 .height(8.dp)
                         )
                         state.athlete?.let {
-                            MarkDown(
+                            MarkdownText(
                                 modifier = Modifier
                                     .padding(start = 8.dp, end = 8.dp)
                                     .testTag(Tags.DETAILS_SCREEN_MARKDOWN_TAG),
-                                text = it.bio,
-                                shouldOpenUrlInBrowser = true
+                                markdown = it.bio
                             )
                         }
                         Spacer(
