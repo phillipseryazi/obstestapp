@@ -127,6 +127,7 @@ fun HomeScreenPortraitLayout(
                             LazyRow(
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .padding(start = 8.dp)
                                     .testTag(
                                         Tags.HOME_SCREEN_LAZY_ROW_TAG
                                     ),
